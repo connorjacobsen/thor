@@ -1,3 +1,6 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'succinctly/bootstrap.css' %}" />
+
 {% if article %}
 	<h1>Summary from: {{ article.webpage_name }}</h1>
 	<h4>By: {{ article.author }}</h4>

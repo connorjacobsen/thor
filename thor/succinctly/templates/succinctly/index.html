@@ -1,7 +1,10 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'succinctly/bootstrap.css' %}" />
+
 {% if article_list %}
 	<ul>
 		{% for article in article_list %}
-			<li><a href="{% url 'detail' article.id %}">{{ article.summary }}</a></li>
+			<li><a href="{% url 'succinctly:detail' article.id %}">{{ article.summary }}</a></li>
 		{% endfor %}
 	</ul>
 {% else %}	

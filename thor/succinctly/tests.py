@@ -91,7 +91,7 @@ class ArticleViewTests(TestCase):
 			['<Article: Past article.>']
 		)
 
-	def test_index_view_with_two_past_polls(self):
+	def test_index_view_with_two_past_articles(self):
 		create_article(summary="Past article 1.", days=-20)
 		create_article(summary="Past article 2.", days=-65)
 		response = self.client.get(reverse('succinctly:index'))
