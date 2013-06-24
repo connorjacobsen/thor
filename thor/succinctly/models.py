@@ -20,8 +20,5 @@ class Article(models.Model):
 		return self.summary # display the summary in the admin instead of 'object'
 
 	def was_published_recently(self):
-		answer = self.pub_date >= timezone.now() - datetime.timedelta(days=1)
-		if answer == True:
-			print "This article was published recently."
-		else:
-			print "This article was NOT published recently."	
+		now = timezone.now()
+		return now - datetime.timedelta(days=1) <= self.pub_date < now
