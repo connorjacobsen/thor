@@ -1,0 +1,9 @@
+{% if article_list %}
+	<ul>
+		{% for article in article_list %}
+			<li><a href="{% url 'detail' article.id %}">{{ article.summary }}</a></li>
+		{% endfor %}
+	</ul>
+{% else %}	
+	<p>No summaries are available.</p>
+{% endif %}			

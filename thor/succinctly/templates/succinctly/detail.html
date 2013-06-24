@@ -1,0 +1,11 @@
+{% if article %}
+	<h1>Summary from: {{ article.webpage_name }}</h1>
+	<h4>By: {{ article.author }}</h4>
+
+	<hr>
+
+	<p>{{ article.summary}} <a href="{{ article.full_URL }}">#FullLink</a></p>
+	<p>Published at: {{ article.pub_date }}</p>
+{% else %}
+	<p>Sorry, that article does not exist.</p>
+{% endif %}		
