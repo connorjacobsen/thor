@@ -1,5 +1,7 @@
 # Create your views here.
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
+from django.contrib import auth
 
 from succinctly.models import Article
 
@@ -11,3 +13,6 @@ def index(request):
 def detail(request, article_id):
 	article = get_object_or_404(Article, pk=article_id)
 	return render(request, 'succinctly/detail.html', {'article': article})	
+
+# Write login and logout views
+	
