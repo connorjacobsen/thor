@@ -18,8 +18,8 @@ App: succinctly
 App: accounts		
 
 	* Build custom User model (done)
-		- Get CustomUser to work on admin
-		- Add a few sample non-superusers
+		- Get CustomUser to work on admin (done)
+		- Add a few sample non-superusers (done -> added one)
 	* Create the following views:
 		- Login 
 		- Logout

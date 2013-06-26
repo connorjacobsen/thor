@@ -122,6 +122,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'south',
     'succinctly',
+    'accounts',
     #'registration',
     # The next line gives the admin a bootstrap styling
     'bootstrap_admin',
@@ -130,6 +131,8 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
+
+AUTH_USER_MODEL = 'accounts.CustomUser'
 
 # Set activation window for registration app
 # ACCOUNT_ACTIVATION_DAYS = 7

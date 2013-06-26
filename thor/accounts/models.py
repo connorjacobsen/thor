@@ -15,14 +15,14 @@ class CustomUserManager(BaseUserManager):
 
 		user = self.model(
 			email = email,
-			is_staff = False,
-			is_admin = False,
-			is_active = True,
-			is_superuser = False,
-			last_login = now,
-			date_joined = now,
 			)
 		user.set_password(password)
+		is_active = True
+		is_staff = False
+		is_admin = False
+		is_superuser = False
+		last_login = now
+		date_joined = now
 
 		# if first_name:
 		#	user.first_name = first_name
@@ -56,6 +56,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 	full_name = '%s %s' % (first_name, last_name)		
 
 	is_admin = models.BooleanField('admin', default=False)
+	is_active = models.BooleanField(default=True)
 
 	objects = CustomUserManager()
 

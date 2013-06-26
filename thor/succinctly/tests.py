@@ -9,10 +9,13 @@ import datetime
 from django.utils import timezone
 from django.test import TestCase
 from django.core.urlresolvers import reverse
+# For testing with CustomUser installed:
+from django.contrib.auth.tests.utils import skipIfCustomUser
 
 from succinctly.models import Article
 
 
+@skipIfCustomUser
 class ArticleMethodTests(TestCase):
 	def test_was_published_recently_with_future_article(self):
 		"""
@@ -47,6 +50,7 @@ def create_article(summary, days):
 	return Article.objects.create(summary=summary, pub_date=timezone.now() + datetime.timedelta(days=days))
 
 
+@skipIfCustomUser
 class ArticleViewTests(TestCase):
 	def test_index_view_with_no_articles(self):
 		"""
