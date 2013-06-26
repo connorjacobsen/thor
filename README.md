@@ -1,7 +1,9 @@
 #Project Thor
 ===
 ###Current To-Do List:
+
 App: succinctly
+
 	* Create views for the following pages:
 		- Home
 		- About
@@ -14,7 +16,10 @@ App: succinctly
 	* Create all pertinent tests	
 
 App: accounts		
-	* Build custom User model
+
+	* Build custom User model (done)
+		- Get CustomUser to work on admin
+		- Add a few sample non-superusers
 	* Create the following views:
 		- Login 
 		- Logout
@@ -26,6 +31,7 @@ App: accounts
 	* Create all pertinent tests	
 
 Other:
+
 	* Set up Crawler, either in the Django application or outside of it
 		- If set up inside Django app, make sure it is governed by only superusers
 		- And impossible to find if you dont know where to look for it
