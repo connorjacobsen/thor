@@ -1,18 +1,19 @@
 # Create your views here.
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
-from django.contrib import auth
+from django.core.urlresolvers import reverse
+from django.views import generic
 
 from succinctly.models import Article
 
-def index(request):
-	article_list = Article.objects.order_by('-pub_date')[:10]
-	context = {'article_list': article_list}
-	return render(request, 'succinctly/index.html', context)
+class IndexView(generic.ListView):
+	template_name = 'succinctly/index.html'
+	context_object_name = 'article_list'
 
-def detail(request, article_id):
-	article = get_object_or_404(Article, pk=article_id)
-	return render(request, 'succinctly/detail.html', {'article': article})	
+	def get_queryset(self):
+		"""Return last 10 published articles."""
+		return Article.objects.order_by('-pub_date')[:10]
 
-# Write login and logout views
-	
+class DetailView(generic.DetailView):
+	model = Article
+	template_name = 'succinctly/detail.html'

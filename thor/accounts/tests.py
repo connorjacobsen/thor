@@ -6,4 +6,6 @@ from django.test import TestCase
 from django.test.utils import override_settings
 
 # Import the custom built user classes for testing
-from accounts import MyUserManager, CustomUser
+from accounts import CustomUserManager, CustomUser
+
+def create_a_user()
