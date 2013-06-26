@@ -1,21 +1,26 @@
 from django.db import models
-from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
+from django.utils import timezone
+from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
 
-class MyUserManager(BaseUserManager):
-	def create_user(self, email, password):
+class CustomUserManager(BaseUserManager):
+	def create_user(self, email, password=None):
 		"""
-		Creates and saves a User with the given email, first and last 
-		names, and password.
+		Creates and saves a User with the given email and password.
 		"""
+		now = timezone.now()
 		if not email:
 			raise ValueError('Users must have a valid email address')
 
-		if not password:
-			raise ValueError('Users must have a valid password')
+		email = CustomUserManager.normalize_email(email)
 
 		user = self.model(
-			email = MyUserManager.normalize_email(email),
-			#user.set_password(password)
+			email = email,
+			is_staff = False,
+			is_admin = False,
+			is_active = True,
+			is_superuser = False,
+			last_login = now,
+			date_joined = now,
 			)
 		user.set_password(password)
 
@@ -29,28 +34,30 @@ class MyUserManager(BaseUserManager):
 
 	def create_superuser(self, email, password):	
 		"""
-		Creates and saves a superuser with the given email, name, 
-		and password.
+		Creates and saves a superuser with the given email and password.
 		"""
-		user = self.create_user(email, 
-			password, 
-		)
-		user.is_admin = True
+		user = self.create_user(email, password)
+		user.is_staff = True
+		is_admin = True
+		user.is_active = True
+		user.is_superuser = True
 		user.save(using = self.db)
+		return user
 
-class CustomUser(AbstractBaseUser):
+class CustomUser(AbstractBaseUser, PermissionsMixin):
 	email = models.EmailField(
 		verbose_name = 'email address',
 		max_length = 255,
 		unique = True,
 		db_index = True,
-	)					
-	# It may not be necessary to declare a password attribute
-	# password = models.PasswordField()
-	is_active = models.BooleanField(default = True)
-	is_admin = models.BooleanField(default = False)
+	)			
+	first_name = models.CharField(max_length=30)
+	last_name = models.CharField(max_length=30)
+	full_name = '%s %s' % (first_name, last_name)		
 
-	objects = MyUserManager()
+	is_admin = models.BooleanField('admin', default=False)
+
+	objects = CustomUserManager()
 
 	USERNAME_FIELD = 'email'
 	REQUIRED_FIELDS = []
@@ -82,4 +89,3 @@ class CustomUser(AbstractBaseUser):
 		"Is the user a member of staff?"
 		# If the user is an admin, they are staff
 		return self.is_admin
-		
