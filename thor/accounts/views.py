@@ -4,6 +4,7 @@ from django.contrib import auth
 from django.core.context_processors import csrf
 from django.template import RequestContext
 from django.views.decorators.csrf import csrf_protect
+from accounts.forms import UserCreationForm
 
 @csrf_protect
 def login(request):
@@ -33,3 +34,20 @@ def invalid_login(request):
 def logout(request):
     auth.logout(request)
     return render_to_response('accounts/logged_out.html')
+
+def register_user(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/accounts/register_success/')
+
+    args = {}
+    args.update(csrf(request)) # csrf token
+
+    args['form'] = UserCreationForm() # blank UserCreationForm
+
+    return render_to_response('accounts/register.html', args)
+
+def register_success(request):
+    return render_to_response('accounts/register_success.html')

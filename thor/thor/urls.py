@@ -15,6 +15,10 @@ urlpatterns = patterns('',
     url(r'^accounts/loggedin/$', 'accounts.views.loggedin'),
     url(r'^accounts/invalid/$', 'accounts.views.invalid_login'),
 
+    # user registration urls
+    url(r'^accounts/register/$', 'accounts.views.register_user'),
+    url(r'^accounts/register_success/$', 'accounts.views.register_success'),
+
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     # Uncomment the next line to enable the admin:
