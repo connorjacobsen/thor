@@ -111,6 +111,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    '~/connor/Developer/thor/thor/templates/'
 )
 
 INSTALLED_APPS = (
@@ -123,7 +124,6 @@ INSTALLED_APPS = (
     'south',
     'succinctly',
     'accounts',
-    #'registration',
     # The next line gives the admin a bootstrap styling
     'bootstrap_admin',
     # Uncomment the next line to enable the admin:
@@ -132,6 +132,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
 )
 
+# Tells Django that there is a custom User model being used
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
 # Set activation window for registration app

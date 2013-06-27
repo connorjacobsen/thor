@@ -6,8 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^succinctly/', include('succinctly.urls', namespace='succinctly')),
-    url(r'^accounts/', include('registration.backends.default.urls')),
-
+    url(r'^accounts/', include('accounts.urls')),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     # Uncomment the next line to enable the admin:
