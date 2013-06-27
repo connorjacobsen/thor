@@ -1,38 +1,19 @@
-{% extends "base.html" %}
-{% comment %}
-  Main page to authenticate users.
-{% endcomment %}
+{% extends 'accounts/base.html' %}
 
-{% block head %}
-  <title>Django Consultants | Login</title>
-{% endblock %}
+{% block content %}
 
-{% block body %}
-  <header>
-    <h1>Django Consultants</h1>
-    <h2>Login Page</h2>
-  </header>
+	{% if form.errors %}
+	<p>Something is wrong</p>
+	{% endif %}
 
-  <section>
-    {% if form.errors %}
-      <p>Your username and password didn't match, please try again.</p>
-    {% endif %}
+	<form action="/accounts/auth/" method="post">{% csrf_token %}
+	    <label for="email">Email Address:</label>
+	    <input type="text" name="email" value="" id="email"/>
+	    <label for="password">Password:</label>
+	    <input type="password" name="password" value="" id="username">
 
-    <form method="post" action=".">
-      <p>
-        <label for="id_email">Email:</label>
-        {{ form.email }}
-      </p>
-      <p>
-        <label for="id_password">Password:</label>
-        {{ form.password }}
-      </p>
-      {% if next %}
-        <input type="hidden" name="next" value="{{ next }}" />
-      {% else %}
-        <input type="hidden" name="next" value="/succintly/" />
-      {% endif %}
-      <input type="submit" value="login" />
-    </form>
-  </section>
+	    <input type="submit" value="login" />
+
+	</form>
+
 {% endblock %}

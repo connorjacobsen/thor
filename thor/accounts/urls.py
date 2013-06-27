@@ -1,7 +1,9 @@
-from django.conf.urls.defaults import *
+from django.conf.urls import patterns, url
+from django.contrib.auth import authenticate, login
+
+from accounts.views import login_view
 
 urlpatterns = patterns('',
-  # Login / logout
-  (r'^login/$', 'django.contrib.auth.views.login'),
+    (r'^login/$', login_view),
 
-  )
+)
