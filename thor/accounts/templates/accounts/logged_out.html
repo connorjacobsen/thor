@@ -2,7 +2,21 @@
 
 {% block content %}
 
-<p>You have been logged out.</p>
-<a href="/accounts/login/">Login again</a>
+	<div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li class="active"><a href="/succinctly/">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Sign Up</a></li>
+        </ul>
+        <h3 class="muted">Logged Out</h3>
+ 	</div>
+
+ 	<hr>
+
+ 	<div>
+ 		<h3>Logged Out</h3>
+		<p>You have successfully logged out. Click <a href="/accounts/login/">here</a> to login again.</p>
+	</div>
 
 {% endblock %}

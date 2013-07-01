@@ -1,15 +1,61 @@
-{% load staticfiles %}
-<link rel="stylesheet" type="text/css" href="{% static 'succinctly/bootstrap.css' %}" />
-<link rel="stylesheet" type="text/css" href="{% static 'succinctly/bootstrap-responsive.css' %}" />
-<link rel="stylesheet" type="text/css" href="{% static 'succinctly/custom.css' %}" />
-<link href='http://fonts.googleapis.com/css?family=Merriweather:400,700|Open+Sans:400italic,400,300' rel='stylesheet' type='text/css'>
+{% extends "succinctly/base.html" %}
 
-{% if article_list %}
-	<ul>
-		{% for article in article_list %}
-			<li><a href="{% url 'succinctly:detail' article.id %}">{{ article.summary }}</a></li>
-		{% endfor %}
-	</ul>
-{% else %}	
-	<p>No summaries are available.</p>
-{% endif %}			
+{% block content %}
+
+	{% if user_is_loggedin %}	
+	<!-- If the user IS authenticated (logged in) -->
+	<!-- Show the most recent article index -->
+		<div class="masthead">
+	        <ul class="nav nav-pills pull-right">
+	          <li class="active"><a href="/succinctly/">Home</a></li>
+	          <li><a href="#">About</a></li>
+	          <li><a href="#">Contact</a></li>
+	          <li><a href='/accounts/logout'>Logout</a></li>
+	        </ul>
+	        <h3 class="muted">{{ user.first_name }} {{ user.last_name }}</h3>
+        </div>
+      
+        <hr>
+
+		{% if article_list %}
+			<div id="columns">
+				{% for article in article_list %}
+						<div class="pin">
+							<img src="{{ article.image_url }}">
+							<h5><a href="http://www.techcrunch.com/">{{ article.webpage_name }}</a></h5>
+							<h6 class="muted">{{ article.author }}</h6>
+							<p>{{ article.summary }} <a href={{ article.full_url }}>#FullStory</a></p>
+						</div>
+		
+				{% endfor %}
+			</div>
+		{% else %}	
+			<p>No summaries are available.</p>
+		{% endif %}	
+
+
+	{% else %}
+	<!-- If the user is not authenticated (not logged in) -->
+	<!-- Show the landing page, allow user to log in or sign up -->
+		<div class="masthead">
+	        <ul class="nav nav-pills pull-right">
+	          <li class="active"><a href="#">Home</a></li>
+	          <li><a href="#">About</a></li>
+	          <li><a href="#">Contact</a></li>
+	          <li><a href="#">Sign Up</a></li>
+	        </ul>
+	        <h3 class="muted">Project Name</h3>
+     	</div>
+      
+     	<hr>
+
+		<div class ="jumbotron">
+        	<h1>Super awesome header crap!</h1>
+        	<p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+        	<a class="btn btn-large btn-success" href="/accounts/login/">Login</a>
+        	<a class="btn btn-large btn-success" href="/accounts/register/">Sign up</a>
+      </div>  
+	{% endif %}	
+
+{% endblock %}	
+

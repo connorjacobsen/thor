@@ -134,6 +134,7 @@ INSTALLED_APPS = (
 
 # Tells Django that there is a custom User model being used
 AUTH_USER_MODEL = 'accounts.CustomUser'
+LOGIN_URL = '/accounts/login/'
 
 # Set activation window for registration app
 # ACCOUNT_ACTIVATION_DAYS = 7

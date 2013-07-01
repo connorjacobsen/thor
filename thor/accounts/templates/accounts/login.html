@@ -1,19 +1,38 @@
 {% extends 'accounts/base.html' %}
 
 {% block content %}
+	
+	<div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li class="active"><a href="/succinctly/">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="/accounts/register/">Sign Up</a></li>
+        </ul>
+        <h3 class="muted">Log In</h3>
+ 	</div>
+  
+ 	<hr>
 
 	{% if form.errors %}
 	<p>Something is wrong</p>
 	{% endif %}
 
-	<form action="/accounts/auth/" method="post">{% csrf_token %}
-	    <label for="email">Email Address:</label>
-	    <input type="text" name="email" value="" id="email"/>
-	    <label for="password">Password:</label>
-	    <input type="password" name="password" value="" id="username">
-
-	    <input type="submit" value="login" />
-
-	</form>
+	<div class="row">
+		<div class="span4">
+			<form action="/accounts/auth/" method="post">{% csrf_token %}
+			    <label for="email">Email Address:</label>
+			    <input type="text" name="email" value="" id="email"/>
+			    <label for="password">Password:</label>
+			    <input type="password" name="password" value="" id="username">
+			    <br>
+			    <input class="btn btn-primary" type="submit" value="Login" />
+			</form>
+		</div>	
+		<div class="span3 offset1">
+			<h4>Don't have an account?</h4>
+			<p>Click <a href="/accounts/register/">here</a> to register.</p>
+		</div>
+	</div> <!-- /row -->	
 
 {% endblock %}

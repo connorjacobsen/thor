@@ -6,7 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^succinctly/', include('succinctly.urls', namespace='succinctly')),
-    #url(r'^accounts/', include('accounts.urls', namespace='accounts')),
+    url(r'^$', 'succinctly.views.home'),
 
     # user auth urls
     url(r'^accounts/login/$', 'accounts.views.login'),

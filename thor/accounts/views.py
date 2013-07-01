@@ -20,7 +20,7 @@ def auth_view(request):
 
     if user is not None:
         auth.login(request, user)
-        return HttpResponseRedirect('/accounts/loggedin/')
+        return HttpResponseRedirect('/succinctly/')
     else:
         return HttpResponseRedirect('/accounts/invalid/')
 
