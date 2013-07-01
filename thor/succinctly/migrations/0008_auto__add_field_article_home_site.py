@@ -8,25 +8,13 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'Website'
-        db.create_table(u'succinctly_website', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=30)),
-            ('url', self.gf('django.db.models.fields.URLField')(max_length=254)),
-            ('logo_image_url', self.gf('django.db.models.fields.URLField')(max_length=254)),
-        ))
-        db.send_create_signal(u'succinctly', ['Website'])
-
         # Adding field 'Article.home_site'
         db.add_column(u'succinctly_article', 'home_site',
-                      self.gf('django.db.models.fields.related.ForeignKey')(to=orm['succinctly.Website']),
+                      self.gf('django.db.models.fields.related.ForeignKey')(default=datetime.datetime(2013, 6, 30, 0, 0), to=orm['succinctly.Website']),
                       keep_default=False)
 
 
     def backwards(self, orm):
-        # Deleting model 'Website'
-        db.delete_table(u'succinctly_website')
-
         # Deleting field 'Article.home_site'
         db.delete_column(u'succinctly_article', 'home_site_id')
 

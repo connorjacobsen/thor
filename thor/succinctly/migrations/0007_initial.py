@@ -17,18 +17,25 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal(u'succinctly', ['Website'])
 
-        # Adding field 'Article.home_site'
-        db.add_column(u'succinctly_article', 'home_site',
-                      self.gf('django.db.models.fields.related.ForeignKey')(to=orm['succinctly.Website']),
-                      keep_default=False)
+        # Adding model 'Article'
+        db.create_table(u'succinctly_article', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('full_URL', self.gf('django.db.models.fields.URLField')(max_length=200)),
+            ('summary', self.gf('django.db.models.fields.TextField')(max_length=140)),
+            ('author', self.gf('django.db.models.fields.CharField')(max_length=30)),
+            ('webpage_name', self.gf('django.db.models.fields.CharField')(max_length=35)),
+            ('pub_date', self.gf('django.db.models.fields.DateTimeField')()),
+            ('image_url', self.gf('django.db.models.fields.URLField')(max_length=254, blank=True)),
+        ))
+        db.send_create_signal(u'succinctly', ['Article'])
 
 
     def backwards(self, orm):
         # Deleting model 'Website'
         db.delete_table(u'succinctly_website')
 
-        # Deleting field 'Article.home_site'
-        db.delete_column(u'succinctly_article', 'home_site_id')
+        # Deleting model 'Article'
+        db.delete_table(u'succinctly_article')
 
 
     models = {
@@ -36,7 +43,6 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'Article'},
             'author': ('django.db.models.fields.CharField', [], {'max_length': '30'}),
             'full_URL': ('django.db.models.fields.URLField', [], {'max_length': '200'}),
-            'home_site': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['succinctly.Website']"}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'image_url': ('django.db.models.fields.URLField', [], {'max_length': '254', 'blank': 'True'}),
             'pub_date': ('django.db.models.fields.DateTimeField', [], {}),

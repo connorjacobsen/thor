@@ -18,8 +18,21 @@
 
     {% block head %}{% endblock %}
   </head>
-  <body onload="setupBlocks();">
+  <body {% block onload %}{% endblock %}>
     <div class="container-narrow">
+
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li {% block home-active %}{% endblock %}><a href="/succinctly/">Home</a></li>
+          <li {% block about-active %}{% endblock %}><a href="#">About</a></li>
+          <li {% block contact-active %}{% endblock %}><a href="#">Contact</a></li>
+          {% block nav %}{% endblock %}
+          {% block nav-else %}{% endblock %}
+        </ul>
+        <h3 class="muted">NewsBit</h3>
+      </div>
+
+      <hr>
       
         {% block content %}{% endblock %}
       <footer>

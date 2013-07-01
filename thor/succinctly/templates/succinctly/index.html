@@ -5,17 +5,8 @@
 	{% if user_is_loggedin %}	
 	<!-- If the user IS authenticated (logged in) -->
 	<!-- Show the most recent article index -->
-		<div class="masthead">
-	        <ul class="nav nav-pills pull-right">
-	          <li class="active"><a href="/succinctly/">Home</a></li>
-	          <li><a href="#">About</a></li>
-	          <li><a href="#">Contact</a></li>
-	          <li><a href='/accounts/logout'>Logout</a></li>
-	        </ul>
-	        <h3 class="muted">{{ user.first_name }} {{ user.last_name }}</h3>
-        </div>
-      
-        <hr>
+
+	    {% block nav %}<li><a href='/accounts/logout'>Logout</a></li>{% endblock %}
 
 		{% if article_list %}
 			<div id="columns">
@@ -37,17 +28,8 @@
 	{% else %}
 	<!-- If the user is not authenticated (not logged in) -->
 	<!-- Show the landing page, allow user to log in or sign up -->
-		<div class="masthead">
-	        <ul class="nav nav-pills pull-right">
-	          <li class="active"><a href="#">Home</a></li>
-	          <li><a href="#">About</a></li>
-	          <li><a href="#">Contact</a></li>
-	          <li><a href="#">Sign Up</a></li>
-	        </ul>
-	        <h3 class="muted">Project Name</h3>
-     	</div>
-      
-     	<hr>
+
+	    {% block nav-else %}<li><a href="#">Sign Up</a></li>{% endblock %}
 
 		<div class ="jumbotron">
         	<h1>Super awesome header crap!</h1>

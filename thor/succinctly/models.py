@@ -32,7 +32,7 @@ class Article(models.Model):
 	# Django will automcatically give it an 'id' attribute
 
 	# Website foreign key
-	home_site = models.ForeignKey('Website')
+	home_site = models.ForeignKey(Website, blank=True, null=True, on_delete=models.SET_NULL)
 
 	def __unicode__(self):
 		return self.summary # display the summary in the admin instead of 'object'
