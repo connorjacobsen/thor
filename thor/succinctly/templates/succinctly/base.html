@@ -14,7 +14,7 @@
     <![endif]-->
 
 
-  	<title>thor{% block title %}{% endblock %}</title>
+  	<title>NewsBit{% block title %}{% endblock %}</title>
 
     {% block head %}{% endblock %}
   </head>
@@ -26,8 +26,11 @@
           <li {% block home-active %}{% endblock %}><a href="/succinctly/">Home</a></li>
           <li {% block about-active %}{% endblock %}><a href="#">About</a></li>
           <li {% block contact-active %}{% endblock %}><a href="#">Contact</a></li>
+        {% if user_is_loggedin %}  
           {% block nav %}{% endblock %}
-          {% block nav-else %}{% endblock %}
+        {% else %}  
+          {% block nav-other %}{% endblock %}
+        {% endif %}  
         </ul>
         <h3 class="muted">NewsBit</h3>
       </div>
@@ -37,8 +40,10 @@
         {% block content %}{% endblock %}
       <footer>
         <hr>
-        <p>&copy; Company 2013</p>
+        <p>&copy; NewsBit 2013</p>
         <ul class="footer-links">
+          <li><a href="#">About</a></li>
+          <li class="muted">&middot;</li>
           <li><a href="#">Contact</a></li>
           <li class="muted">&middot;</li>
           <li><a href="#">Terms</a></li>

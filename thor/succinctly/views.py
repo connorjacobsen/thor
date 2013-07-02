@@ -13,6 +13,7 @@ def index(request):
 		user = request.user # get the user
 	else:
 		user_is_loggedin = False	
+		user = request.user
 	article_list = Article.objects.order_by('-pub_date')#[:20]
 	"""Return last 10 published articles."""
 	return render(request, 'succinctly/index.html', {'article_list': article_list, 'user_is_loggedin': user_is_loggedin, 'user':user})

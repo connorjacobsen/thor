@@ -5,7 +5,6 @@
 App: succinctly
 
 	* Create views for the following pages:
-		- Home
 		- About
 		- Contact
 		- Terms of Service
@@ -17,17 +16,6 @@ App: succinctly
 
 App: accounts		
 
-	* Build custom User model (done)
-		- Get CustomUser to work on admin (done)
-		- Add a few sample non-superusers (done -> added one)
-	* Create the following views:
-		- Login 
-		- Logout
-		- Edit page
-		- Profile page
-		- Will probably need to add other views as I go
-	* Create the necessary methods to use with the registration that dont inherit
-	* Shore up authentication and make sure Users have little to no permissions enabled
 	* Create all pertinent tests	
 
 Other:

@@ -1,21 +1,31 @@
 {% extends "succinctly/base.html" %}
 
+{% block home-active %}
+	class="active"
+{% endblock %}
+
+{% if user_is_loggedin %}
+	{% block nav %}<li><a href='/accounts/logout'>Logout</a></li>{% endblock %}
+{% else %}
+	{% block nav-other %}<li><a href="/accounts/signup">Sign Up</a></li>{% endblock %}
+{% endif %}
+
 {% block content %}
 
 	{% if user_is_loggedin %}	
 	<!-- If the user IS authenticated (logged in) -->
 	<!-- Show the most recent article index -->
-
-	    {% block nav %}<li><a href='/accounts/logout'>Logout</a></li>{% endblock %}
-
 		{% if article_list %}
 			<div id="columns">
 				{% for article in article_list %}
+					
 						<div class="pin">
+							<a href="{{ article.full_URL }}">
 							<img src="{{ article.image_url }}">
 							<h5><a href="http://www.techcrunch.com/">{{ article.webpage_name }}</a></h5>
 							<h6 class="muted">{{ article.author }}</h6>
-							<p>{{ article.summary }} <a href={{ article.full_url }}>#FullStory</a></p>
+							<p>{{ article.summary }} <a href="{{ article.full_URL }}">#FullStory</a></p>
+							</a>
 						</div>
 		
 				{% endfor %}
@@ -25,17 +35,14 @@
 		{% endif %}	
 
 
-	{% else %}
+	{% elif user_is_loggedin = False %}
 	<!-- If the user is not authenticated (not logged in) -->
 	<!-- Show the landing page, allow user to log in or sign up -->
-
-	    {% block nav-else %}<li><a href="#">Sign Up</a></li>{% endblock %}
-
 		<div class ="jumbotron">
-        	<h1>Super awesome header crap!</h1>
-        	<p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        	<a class="btn btn-large btn-success" href="/accounts/login/">Login</a>
-        	<a class="btn btn-large btn-success" href="/accounts/register/">Sign up</a>
+        	<h1>Welcome to NewsBit</h1>
+        	<p class="lead">Succinct is powerful. And now, so is your news.</p>
+        	<a class="btn btn-large btn-primary" href="/accounts/login/">Login</a>
+        	<a class="btn btn-large btn-primary" href="/accounts/register/">Sign up</a>
       </div>  
 	{% endif %}	
 
