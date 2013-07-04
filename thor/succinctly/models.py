@@ -17,7 +17,7 @@ class Website(models.Model):
 # Create your models here.
 class Article(models.Model):
 	# url of original Article
-	full_URL = models.URLField(max_length=200)
+	full_URL = models.URLField(max_length=200, unique=True)
 	# summary itself
 	summary = models.TextField(max_length=140)
 	# author's name?
