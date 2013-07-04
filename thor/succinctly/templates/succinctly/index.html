@@ -7,7 +7,7 @@
 {% if user_is_loggedin %}
 	{% block nav %}<li><a href='/accounts/logout'>Logout</a></li>{% endblock %}
 {% else %}
-	{% block nav-other %}<li><a href="/accounts/signup">Sign Up</a></li>{% endblock %}
+	{% block nav-other %}<li><a href="/accounts/register">Sign Up</a></li>{% endblock %}
 {% endif %}
 
 {% block content %}

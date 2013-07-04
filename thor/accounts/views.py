@@ -20,7 +20,7 @@ def auth_view(request):
 
     if user is not None:
         auth.login(request, user)
-        return HttpResponseRedirect('/succinctly/')
+        return HttpResponseRedirect('/')
     else:
         return HttpResponseRedirect('/accounts/invalid/')
 
@@ -33,7 +33,7 @@ def invalid_login(request):
 
 def logout(request):
     auth.logout(request)
-    return render_to_response('accounts/logged_out.html')
+    return HttpResponseRedirect('/')
 
 def register_user(request):
     if request.method == 'POST':
@@ -50,4 +50,4 @@ def register_user(request):
     return render_to_response('accounts/register.html', args)
 
 def register_success(request):
-    return render_to_response('accounts/register_success.html')
+    return HttpResponseRedirect('/')
