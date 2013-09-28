@@ -1,5 +1,7 @@
 #Project Thor
 ===
+*This is NOT finished, and may never be.....*
+
 ###Current To-Do List:
 
 App: succinctly
